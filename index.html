@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YSlead | Gerichte B2B prospecting</title>
+  <meta name="description" content="YSlead onderzoekt en kwalificeert relevante B2B-prospects, zodat jij minder tijd kwijt bent aan zoeken en meer tijd hebt voor gesprekken en groei.">
+  <meta name="theme-color" content="#001847">
+  <meta property="og:title" content="YSlead | Gerichte B2B prospecting">
+  <meta property="og:description" content="Meer relevante prospects. Minder tijd kwijt aan zoeken.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yslead.nl/">
+  <link rel="canonical" href="https://yslead.nl/">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <style>
+    :root{
+      --navy:#001847;
+      --blue:#005DEE;
+      --light-blue:#97B8F9;
+      --ice:#F6F9FF;
+      --white:#FFFFFF;
+      --text:#253858;
+      --muted:#61708A;
+      --border:#DCE7FA;
+      --shadow:0 18px 50px rgba(0,24,71,.09);
+      --radius:22px;
+      --max:1180px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      color:var(--text);
+      background:var(--white);
+      -webkit-font-smoothing:antialiased;
+    }
+    a{color:inherit;text-decoration:none}
+    button,input,textarea{font:inherit}
+    .container{width:min(var(--max),calc(100% - 40px));margin-inline:auto}
+    .nav{
+      position:sticky;top:0;z-index:50;
+      background:rgba(255,255,255,.92);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(220,231,250,.85)
+    }
+    .nav-inner{height:76px;display:flex;align-items:center;justify-content:space-between;gap:28px}
+    .brand{display:flex;align-items:center;gap:10px;color:var(--navy);font-weight:800;letter-spacing:-.045em;font-size:27px}
+    .brand svg{width:34px;height:34px;flex:none}
+    .nav-links{display:flex;align-items:center;gap:28px;color:#405171;font-size:14px;font-weight:650}
+    .nav-links a:hover{color:var(--blue)}
+    .btn{
+      min-height:48px;padding:0 20px;border-radius:12px;border:1px solid transparent;
+      display:inline-flex;align-items:center;justify-content:center;gap:9px;
+      font-weight:750;font-size:15px;cursor:pointer;transition:.2s ease
+    }
+    .btn-primary{background:var(--blue);color:var(--white);box-shadow:0 10px 26px rgba(0,93,238,.22)}
+    .btn-primary:hover{background:#004CC6;transform:translateY(-1px)}
+    .btn-secondary{background:var(--white);color:var(--navy);border-color:var(--border)}
+    .btn-secondary:hover{border-color:var(--light-blue);background:var(--ice)}
+    .hero{position:relative;overflow:hidden;padding:96px 0 80px}
+    .hero:before{
+      content:"";position:absolute;width:620px;height:620px;right:-260px;top:-300px;border-radius:50%;
+      background:radial-gradient(circle,rgba(151,184,249,.28),rgba(246,249,255,0) 68%);pointer-events:none
+    }
+    .hero-grid{display:grid;grid-template-columns:minmax(0,1.03fr) minmax(420px,.97fr);gap:72px;align-items:center}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:9px;padding:8px 12px;border:1px solid var(--border);
+      border-radius:999px;background:var(--ice);color:var(--blue);font-size:13px;font-weight:800;margin-bottom:22px
+    }
+    .eyebrow-dot{width:7px;height:7px;background:var(--blue);border-radius:50%;box-shadow:0 0 0 5px rgba(0,93,238,.09)}
+    h1,h2,h3{margin:0;color:var(--navy);letter-spacing:-.045em}
+    h1{font-size:clamp(48px,6.1vw,76px);line-height:.99;max-width:760px}
+    .blue{color:var(--blue)}
+    .hero-copy{font-size:19px;line-height:1.68;color:var(--muted);max-width:650px;margin:28px 0 32px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .trustline{display:flex;gap:22px;flex-wrap:wrap;margin-top:30px;color:#536682;font-size:13px;font-weight:650}
+    .trustline span{display:flex;align-items:center;gap:7px}
+    .check{width:18px;height:18px;border-radius:50%;background:#EAF2FF;color:var(--blue);display:inline-grid;place-items:center;font-size:11px;font-weight:900}
+    .visual{position:relative;min-height:500px}
+    .growth-mark{position:absolute;right:5px;top:-25px;width:260px;height:185px;opacity:.95}
+    .prospect-card{
+      position:absolute;left:0;right:44px;top:75px;background:var(--white);border:1px solid var(--border);
+      border-radius:26px;box-shadow:var(--shadow);overflow:hidden
+    }
+    .card-head{padding:22px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
+    .card-title{font-size:14px;font-weight:800;color:var(--navy)}
+    .status{padding:6px 9px;background:#EDF4FF;color:var(--blue);border-radius:999px;font-size:11px;font-weight:850}
+    .lead-row{padding:18px 24px;display:grid;grid-template-columns:42px 1fr auto;gap:14px;align-items:center;border-bottom:1px solid #EDF2FB}
+    .lead-row:last-child{border-bottom:0}
+    .lead-icon{width:42px;height:42px;border-radius:12px;background:var(--ice);display:grid;place-items:center;color:var(--blue);font-weight:850}
+    .lead-name{font-weight:800;color:var(--navy);font-size:14px}
+    .lead-meta{font-size:12px;color:var(--muted);margin-top:4px}
+    .signal{font-size:11px;font-weight:750;color:#405171;border:1px solid var(--border);padding:7px 9px;border-radius:9px;background:#FCFDFF}
+    .mini-card{
+      position:absolute;right:0;bottom:26px;width:245px;background:var(--navy);color:var(--white);padding:22px;border-radius:20px;
+      box-shadow:0 16px 42px rgba(0,24,71,.22)
+    }
+    .mini-label{font-size:11px;color:#BFD2FA;text-transform:uppercase;letter-spacing:.11em;font-weight:850}
+    .mini-number{font-size:24px;font-weight:850;margin:7px 0 6px}
+    .mini-copy{font-size:12px;color:#D8E4FA;line-height:1.55}
+    .section{padding:100px 0}
+    .section-soft{background:var(--ice)}
+    .section-kicker{color:var(--blue);font-size:12px;font-weight:850;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
+    h2{font-size:clamp(36px,4.2vw,54px);line-height:1.05;max-width:800px}
+    .section-intro{font-size:18px;line-height:1.7;color:var(--muted);max-width:720px;margin:20px 0 0}
+    .deliver-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:70px;margin-top:54px;align-items:start}
+    .deliver-list{display:grid;gap:3px;border-top:1px solid var(--border)}
+    .deliver-item{display:grid;grid-template-columns:42px 1fr;gap:15px;padding:20px 0;border-bottom:1px solid var(--border)}
+    .number{width:34px;height:34px;border-radius:10px;background:#EAF2FF;color:var(--blue);display:grid;place-items:center;font-size:12px;font-weight:900}
+    .deliver-item strong{display:block;color:var(--navy);font-size:15px;margin-bottom:4px}
+    .deliver-item span{font-size:14px;line-height:1.55;color:var(--muted)}
+    .research-card{padding:28px;border:1px solid var(--border);border-radius:var(--radius);background:white;box-shadow:0 12px 38px rgba(0,24,71,.06)}
+    .research-top{display:flex;justify-content:space-between;align-items:start;gap:20px}
+    .company-placeholder{display:flex;align-items:center;gap:12px}
+    .company-logo{width:46px;height:46px;border-radius:13px;background:var(--navy);color:white;display:grid;place-items:center;font-weight:850}
+    .company-title{font-weight:850;color:var(--navy)}
+    .company-sub{font-size:12px;color:var(--muted);margin-top:3px}
+    .research-fields{margin-top:24px;display:grid;gap:12px}
+    .field{padding:14px 15px;background:var(--ice);border:1px solid #E8F0FE;border-radius:13px}
+    .field-label{font-size:10px;font-weight:850;text-transform:uppercase;letter-spacing:.09em;color:#72819A;margin-bottom:5px}
+    .field-value{font-size:13px;color:var(--navy);font-weight:650;line-height:1.45}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:52px}
+    .step{position:relative;padding:30px;border:1px solid var(--border);border-radius:20px;background:white;min-height:220px}
+    .step-num{color:var(--blue);font-weight:900;font-size:13px;margin-bottom:38px}
+    .step h3{font-size:21px;margin-bottom:10px}
+    .step p{margin:0;color:var(--muted);font-size:14px;line-height:1.65}
+    .step-arrow{position:absolute;right:23px;top:25px;color:var(--light-blue);font-size:28px;font-weight:900}
+    .experience-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:80px;align-items:center}
+    .experience-tags{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .industry{border:1px solid var(--border);border-radius:18px;padding:24px 18px;background:var(--white);text-align:center}
+    .industry-icon{width:44px;height:44px;margin:0 auto 14px;border-radius:13px;background:#EDF4FF;color:var(--blue);display:grid;place-items:center;font-weight:900}
+    .industry strong{color:var(--navy);font-size:14px;display:block}
+    .industry span{display:block;color:var(--muted);font-size:11px;margin-top:5px}
+    .db-grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:76px;align-items:center;margin-top:54px}
+    .principles{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .principle{padding:21px;border-radius:16px;border:1px solid var(--border);background:white}
+    .principle strong{display:block;color:var(--navy);font-size:14px;margin-bottom:7px}
+    .principle p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}
+    .quote-box{border-left:4px solid var(--blue);padding:20px 0 20px 22px;color:var(--navy);font-size:22px;font-weight:750;line-height:1.45}
+    .cta{padding:88px 0}
+    .cta-box{
+      position:relative;overflow:hidden;border-radius:30px;background:var(--navy);color:white;padding:60px;
+      display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center
+    }
+    .cta-box:after{content:"";position:absolute;width:360px;height:360px;border:60px solid rgba(0,93,238,.28);border-radius:50%;right:-170px;top:-190px}
+    .cta-box h2{color:white;font-size:clamp(34px,4vw,50px)}
+    .cta-box p{color:#CCD9F1;font-size:16px;line-height:1.65;max-width:600px}
+    .cta-box .btn-primary{background:var(--blue)}
+    .cta-actions{display:flex;justify-content:flex-end;position:relative;z-index:2}
+    .contact{display:grid;grid-template-columns:.85fr 1.15fr;gap:74px;align-items:start}
+    .contact-details{margin-top:28px;display:grid;gap:12px}
+    .contact-details a{color:var(--blue);font-weight:750}
+    .form-card{border:1px solid var(--border);border-radius:22px;padding:28px;background:white;box-shadow:0 12px 38px rgba(0,24,71,.06)}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .full{grid-column:1/-1}
+    label{display:block;color:var(--navy);font-size:12px;font-weight:800;margin:0 0 7px 2px}
+    input,textarea{
+      width:100%;border:1px solid #D5E1F5;border-radius:11px;padding:13px 14px;outline:none;color:var(--navy);background:#FEFFFF
+    }
+    input:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,93,238,.08)}
+    textarea{min-height:126px;resize:vertical}
+    .form-note{font-size:11px;color:#7B899E;margin:12px 0 0;line-height:1.5}
+    footer{border-top:1px solid var(--border);padding:32px 0}
+    .footer-inner{display:flex;justify-content:space-between;gap:22px;align-items:center;color:#6E7D95;font-size:12px}
+    .footer-brand{color:var(--navy);font-weight:850;font-size:18px}
+    .mobile-menu{display:none}
+    @media (max-width:960px){
+      .nav-links{display:none}.mobile-menu{display:inline-flex}
+      .hero{padding-top:64px}.hero-grid,.deliver-grid,.experience-wrap,.db-grid,.contact,.cta-box{grid-template-columns:1fr;gap:46px}
+      .visual{min-height:450px}.prospect-card{right:35px}.growth-mark{right:0}
+      .steps{grid-template-columns:1fr}.step{min-height:auto}
+      .experience-tags{grid-template-columns:repeat(3,1fr)}
+      .cta-actions{justify-content:flex-start}
+    }
+    @media (max-width:640px){
+      .container{width:min(100% - 28px,var(--max))}
+      .nav-inner{height:68px}.brand{font-size:24px}
+      .hero{padding:54px 0 58px}h1{font-size:45px}.hero-copy{font-size:17px}
+      .hero-actions .btn{width:100%}
+      .visual{min-height:410px}.growth-mark{width:190px;height:140px;top:-6px}
+      .prospect-card{top:78px;right:0}.lead-row{padding:15px 17px;grid-template-columns:38px 1fr}.signal{display:none}
+      .mini-card{width:215px;bottom:0}
+      .section{padding:72px 0}h2{font-size:36px}.section-intro{font-size:16px}
+      .experience-tags,.principles,.form-grid{grid-template-columns:1fr}.full{grid-column:auto}
+      .cta{padding:56px 0}.cta-box{padding:38px 26px;border-radius:22px}
+      .footer-inner{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top" aria-label="YSlead home">
+        <svg viewBox="0 0 42 42" aria-hidden="true">
+          <rect x="4" y="27" width="6" height="10" rx="2" fill="#97B8F9"/>
+          <rect x="14" y="21" width="6" height="16" rx="2" fill="#4E8EF4"/>
+          <rect x="24" y="14" width="6" height="23" rx="2" fill="#005DEE"/>
+          <path d="M7 24 L17 16 L25 19 L36 7" fill="none" stroke="#005DEE" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M30 7 H36 V13" fill="none" stroke="#005DEE" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <span>YSlead</span>
+      </a>
+      <div class="nav-links">
+        <a href="#wat-je-krijgt">Wat je krijgt</a>
+        <a href="#hoe-het-werkt">Hoe het werkt</a>
+        <a href="#ervaring">Ervaring</a>
+        <a href="#contact">Contact</a>
+        <a class="btn btn-primary" href="#contact">Gratis proefleads</a>
+      </div>
+      <a class="btn btn-primary mobile-menu" href="#contact">Proefleads</a>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow"><span class="eyebrow-dot"></span> Gerichte B2B prospecting</div>
+          <h1>Meer relevante prospects. <span class="blue">Minder tijd kwijt aan zoeken.</span></h1>
+          <p class="hero-copy">YSlead onderzoekt en kwalificeert bedrijven die passen bij jouw ideale klant, zodat jij je kunt richten op gesprekken, relaties en groei.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">Ontvang gratis proefleads →</a>
+            <a class="btn btn-secondary" href="#hoe-het-werkt">Bekijk hoe het werkt</a>
+          </div>
+          <div class="trustline">
+            <span><i class="check">✓</i> Gericht onderzoek</span>
+            <span><i class="check">✓</i> Praktische contactinformatie</span>
+            <span><i class="check">✓</i> Minder ruis</span>
+          </div>
+        </div>
+
+        <div class="visual" aria-label="Voorbeeld van gekwalificeerde prospects">
+          <svg class="growth-mark" viewBox="0 0 280 190" aria-hidden="true">
+            <rect x="26" y="124" width="30" height="48" rx="7" fill="#DDE9FF"/>
+            <rect x="72" y="102" width="30" height="70" rx="7" fill="#BAD0FC"/>
+            <rect x="118" y="77" width="30" height="95" rx="7" fill="#97B8F9"/>
+            <rect x="164" y="49" width="30" height="123" rx="7" fill="#4E8EF4"/>
+            <path d="M35 111 L86 82 L130 91 L220 25" fill="none" stroke="#005DEE" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M196 25 H220 V49" fill="none" stroke="#005DEE" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div class="prospect-card">
+            <div class="card-head">
+              <div class="card-title">Gekwalificeerde prospects</div>
+              <span class="status">Onderzocht</span>
+            </div>
+            <div class="lead-row">
+              <div class="lead-icon">A</div>
+              <div><div class="lead-name">Voorbeeldbedrijf A</div><div class="lead-meta">Utrecht · zakelijke dienstverlening</div></div>
+              <div class="signal">Groei-signaal</div>
+            </div>
+            <div class="lead-row">
+              <div class="lead-icon">B</div>
+              <div><div class="lead-name">Voorbeeldbedrijf B</div><div class="lead-meta">Amersfoort · 20–50 medewerkers</div></div>
+              <div class="signal">Nieuwe locatie</div>
+            </div>
+            <div class="lead-row">
+              <div class="lead-icon">C</div>
+              <div><div class="lead-name">Voorbeeldbedrijf C</div><div class="lead-meta">Amsterdam · B2B</div></div>
+              <div class="signal">Hiring-signaal</div>
+            </div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-label">YSlead aanpak</div>
+            <div class="mini-number">Fit + context</div>
+            <div class="mini-copy">Niet alleen een bedrijfsnaam, maar ook waarom deze prospect het benaderen waard is.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="wat-je-krijgt">
+      <div class="container">
+        <div class="section-kicker">Wat je ontvangt</div>
+        <h2>Prospectinformatie waar je daadwerkelijk iets mee kunt.</h2>
+        <p class="section-intro">Geen lange database vol willekeurige bedrijven. We brengen de informatie terug tot wat relevant is voor jouw commerciële doel.</p>
+        <div class="deliver-grid">
+          <div class="deliver-list">
+            <div class="deliver-item"><div class="number">01</div><div><strong>Bedrijven die passen bij jouw ideale klant</strong><span>Gescreend op onder andere branche, omvang, regio en commerciële relevantie.</span></div></div>
+            <div class="deliver-item"><div class="number">02</div><div><strong>Openbare bedrijfs- en contactinformatie</strong><span>Praktische gegevens om een prospect gericht te kunnen benaderen.</span></div></div>
+            <div class="deliver-item"><div class="number">03</div><div><strong>Beslisser of beste contactroute</strong><span>Waar beschikbaar zoeken we verder dan een algemene inbox.</span></div></div>
+            <div class="deliver-item"><div class="number">04</div><div><strong>Relevante signalen en context</strong><span>Bijvoorbeeld groei, vacatures, nieuwe locaties of andere concrete aanleiding.</span></div></div>
+            <div class="deliver-item"><div class="number">05</div><div><strong>Waarom deze prospect interessant is</strong><span>Een korte onderbouwing zodat je snel ziet waar de commerciële kans zit.</span></div></div>
+            <div class="deliver-item"><div class="number">06</div><div><strong>Optionele outreach-invalshoek</strong><span>Een persoonlijke aanleiding waarmee je minder generiek het gesprek opent.</span></div></div>
+          </div>
+          <div class="research-card">
+            <div class="research-top">
+              <div class="company-placeholder">
+                <div class="company-logo">VB</div>
+                <div><div class="company-title">Voorbeeld B2B-bedrijf</div><div class="company-sub">Illustratief prospectprofiel</div></div>
+              </div>
+              <span class="status">Goede fit</span>
+            </div>
+            <div class="research-fields">
+              <div class="field"><div class="field-label">Locatie</div><div class="field-value">Midden-Nederland</div></div>
+              <div class="field"><div class="field-label">Signaal</div><div class="field-value">Bedrijf breidt team en zakelijke activiteiten uit</div></div>
+              <div class="field"><div class="field-label">Contactroute</div><div class="field-value">Directe commerciële contactpersoon gevonden</div></div>
+              <div class="field"><div class="field-label">Waarom relevant</div><div class="field-value">Past bij doelgroep, regio en gewenste contractwaarde</div></div>
+              <div class="field"><div class="field-label">Outreach-invalshoek</div><div class="field-value">Aansluiten op actuele uitbreiding in plaats van generieke introductie</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="hoe-het-werkt">
+      <div class="container">
+        <div class="section-kicker">Hoe het werkt</div>
+        <h2>Van ideale klant naar bruikbare prospectlijst in drie stappen.</h2>
+        <div class="steps">
+          <article class="step"><div class="step-num">STAP 01</div><div class="step-arrow">↗</div><h3>Jij beschrijft je ideale klant</h3><p>We bepalen samen welke bedrijven interessant zijn, in welke regio en welke signalen extra belangrijk zijn.</p></article>
+          <article class="step"><div class="step-num">STAP 02</div><div class="step-arrow">↗</div><h3>Wij onderzoeken en kwalificeren</h3><p>YSlead zoekt passende bedrijven, controleert de context en brengt relevante openbare informatie samen.</p></article>
+          <article class="step"><div class="step-num">STAP 03</div><div class="step-arrow">↗</div><h3>Jij kunt direct aan de slag</h3><p>Je ontvangt een helder overzicht dat praktisch is ingericht voor gerichte, persoonlijke outreach.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="ervaring">
+      <div class="container experience-wrap">
+        <div>
+          <div class="section-kicker">Ervaring</div>
+          <h2>Ervaring met uiteenlopende B2B-bedrijven.</h2>
+          <p class="section-intro">We hebben onder andere gewerkt met bedrijven in schoonmaak & facility, recruitment en IT-dienstverlening. Onze aanpak is niet aan één sector gebonden. De selectie wordt afgestemd op jouw ideale klant, regio en commerciële doel.</p>
+        </div>
+        <div class="experience-tags">
+          <div class="industry"><div class="industry-icon">SF</div><strong>Schoonmaak & facility</strong><span>Lokale en regionale B2B</span></div>
+          <div class="industry"><div class="industry-icon">R</div><strong>Recruitment</strong><span>Hiring-signalen en accounts</span></div>
+          <div class="industry"><div class="industry-icon">IT</div><strong>IT-dienstverlening</strong><span>MSP, cloud en security</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-kicker">Waarom YSlead</div>
+        <h2>Geen generieke database.</h2>
+        <div class="db-grid">
+          <div class="quote-box">Geen willekeurige rijen uit een database. We kijken naar fit, context en bruikbaarheid.</div>
+          <div class="principles">
+            <div class="principle"><strong>Onderzoek boven volume</strong><p>Liever relevante bedrijven met context dan een grote lijst waar je zelf nog doorheen moet.</p></div>
+            <div class="principle"><strong>Minder irrelevante prospects</strong><p>De selectie begint bij jouw klantprofiel, niet bij wat toevallig in een database staat.</p></div>
+            <div class="principle"><strong>Context bij de prospect</strong><p>We zoeken naar een concrete reden waarom een bedrijf interessant kan zijn.</p></div>
+            <div class="principle"><strong>Praktisch voor outreach</strong><p>Informatie wordt zo aangeleverd dat je er direct een persoonlijk gesprek mee kunt starten.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container">
+        <div class="cta-box">
+          <div>
+            <h2>Benieuwd hoe dit er voor jouw bedrijf uitziet?</h2>
+            <p>Ontvang gratis proefleads op basis van jouw ideale klant. Zo zie je eerst de kwaliteit en relevantie voordat je ergens aan vastzit.</p>
+          </div>
+          <div class="cta-actions"><a class="btn btn-primary" href="#contact">Vraag gratis proefleads aan →</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="contact">
+      <div class="container contact">
+        <div>
+          <div class="section-kicker">Contact</div>
+          <h2>Vertel ons wie je wilt bereiken.</h2>
+          <p class="section-intro">Geef kort aan wat voor bedrijven een goede klant voor je zijn. We gebruiken dat als uitgangspunt voor de gratis proefleads.</p>
+          <div class="contact-details">
+            <div><strong style="color:#001847">YSlead</strong></div>
+            <a href="mailto:yorrick@yslead.nl">yorrick@yslead.nl</a>
+            <div style="font-size:13px;color:#71809A">KVK 92137490</div>
+          </div>
+        </div>
+        <form class="form-card" id="leadForm">
+          <div class="form-grid">
+            <div><label for="name">Naam</label><input id="name" name="name" autocomplete="name" required placeholder="Jouw naam"></div>
+            <div><label for="email">Zakelijk e-mailadres</label><input id="email" name="email" type="email" autocomplete="email" required placeholder="naam@bedrijf.nl"></div>
+            <div class="full"><label for="company">Bedrijfsnaam</label><input id="company" name="company" autocomplete="organization" required placeholder="Bedrijfsnaam"></div>
+            <div class="full"><label for="target">Wat voor klanten zoek je?</label><textarea id="target" name="target" required placeholder="Bijvoorbeeld: zakelijke dienstverleners met 20-100 medewerkers in Midden-Nederland..."></textarea></div>
+            <div class="full"><button class="btn btn-primary" style="width:100%" type="submit">Vraag gratis proefleads aan →</button></div>
+          </div>
+          <p class="form-note">Bij verzenden opent je e-mailprogramma met de ingevulde informatie gericht aan YSlead. Zo zijn er geen betaalde formuliertools of trackingdiensten nodig.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div><span class="footer-brand">YSlead</span> &nbsp; · &nbsp; Gerichte B2B prospecting</div>
+      <div>© <span id="year"></span> YSlead &nbsp; · &nbsp; <a href="mailto:yorrick@yslead.nl">yorrick@yslead.nl</a></div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('leadForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const company = document.getElementById('company').value.trim();
+      const target = document.getElementById('target').value.trim();
+      const subject = encodeURIComponent('Aanvraag gratis proefleads - ' + company);
+      const body = encodeURIComponent(
+        'Hoi,\n\nIk ontvang graag gratis proefleads.\n\n' +
+        'Naam: ' + name + '\n' +
+        'Zakelijk e-mailadres: ' + email + '\n' +
+        'Bedrijf: ' + company + '\n\n' +
+        'Ideale klanten:\n' + target + '\n\n'
+      );
+      window.location.href = 'mailto:yorrick@yslead.nl?subject=' + subject + '&body=' + body;
+    });
+  </script>
+</body>
+</html>
