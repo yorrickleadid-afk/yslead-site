@@ -161,6 +161,8 @@
     input:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,93,238,.08)}
     textarea{min-height:126px;resize:vertical}
     .form-note{font-size:11px;color:#7B899E;margin:12px 0 0;line-height:1.5}
+    .form-success{display:none;padding:18px 20px;border:1px solid #BFD5FB;border-radius:14px;background:#F3F7FF;color:var(--navy);line-height:1.55;margin-bottom:18px}
+    .form-success strong{display:block;margin-bottom:4px;color:var(--blue)}
     footer{border-top:1px solid var(--border);padding:32px 0}
     .footer-inner{display:flex;justify-content:space-between;gap:22px;align-items:center;color:#6E7D95;font-size:12px}
     .footer-brand{color:var(--navy);font-weight:850;font-size:18px}
@@ -370,7 +372,13 @@
             <div style="font-size:13px;color:#71809A">KVK 92137490</div>
           </div>
         </div>
-        <form class="form-card" id="leadForm">
+        <form class="form-card" id="leadForm" action="https://formsubmit.co/yorrick@yslead.nl" method="POST">
+          <div class="form-success" id="formSuccess" role="status" aria-live="polite"><strong>Aanvraag ontvangen.</strong>Bedankt! Je aanvraag voor gratis proefleads is verstuurd. We nemen zo snel mogelijk contact met je op.</div>
+          <input type="hidden" name="_subject" value="Nieuwe aanvraag gratis proefleads via yslead.nl">
+          <input type="hidden" name="_next" value="https://yslead.nl/?sent=1#contact">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
           <div class="form-grid">
             <div><label for="name">Naam</label><input id="name" name="name" autocomplete="name" required placeholder="Jouw naam"></div>
             <div><label for="email">Zakelijk e-mailadres</label><input id="email" name="email" type="email" autocomplete="email" required placeholder="naam@bedrijf.nl"></div>
@@ -378,7 +386,7 @@
             <div class="full"><label for="target">Wat voor klanten zoek je?</label><textarea id="target" name="target" required placeholder="Bijvoorbeeld: zakelijke dienstverleners met 20-100 medewerkers in Midden-Nederland..."></textarea></div>
             <div class="full"><button class="btn btn-primary" style="width:100%" type="submit">Vraag gratis proefleads aan →</button></div>
           </div>
-          <p class="form-note">Bij verzenden opent je e-mailprogramma met de ingevulde informatie gericht aan YSlead. Zo zijn er geen betaalde formuliertools of trackingdiensten nodig.</p>
+          <p class="form-note">Je gegevens worden alleen gebruikt om contact met je op te nemen over je aanvraag.</p>
         </form>
       </div>
     </section>
@@ -393,22 +401,17 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-    document.getElementById('leadForm').addEventListener('submit', function(e){
-      e.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const company = document.getElementById('company').value.trim();
-      const target = document.getElementById('target').value.trim();
-      const subject = encodeURIComponent('Aanvraag gratis proefleads - ' + company);
-      const body = encodeURIComponent(
-        'Hoi,\n\nIk ontvang graag gratis proefleads.\n\n' +
-        'Naam: ' + name + '\n' +
-        'Zakelijk e-mailadres: ' + email + '\n' +
-        'Bedrijf: ' + company + '\n\n' +
-        'Ideale klanten:\n' + target + '\n\n'
-      );
-      window.location.href = 'mailto:yorrick@yslead.nl?subject=' + subject + '&body=' + body;
-    });
+
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('sent') === '1') {
+      const success = document.getElementById('formSuccess');
+      const formGrid = document.querySelector('#leadForm .form-grid');
+      if (success) success.style.display = 'block';
+      if (formGrid) formGrid.style.display = 'none';
+      if (window.history && window.history.replaceState) {
+        window.history.replaceState({}, document.title, window.location.pathname + '#contact');
+      }
+    }
   </script>
 </body>
 </html>
