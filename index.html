@@ -49,6 +49,8 @@
     .brand svg{width:34px;height:34px;flex:none}
     .nav-links{display:flex;align-items:center;gap:28px;color:#405171;font-size:14px;font-weight:650}
     .nav-links a:hover{color:var(--blue)}
+    .nav-contact{padding:9px 12px;border-radius:10px;background:#EDF4FF;color:var(--blue)!important;border:1px solid #D8E7FF}
+    .nav-contact:hover{background:#E4EEFF!important;border-color:#BFD5FB}
     .btn{
       min-height:48px;padding:0 20px;border-radius:12px;border:1px solid transparent;
       display:inline-flex;align-items:center;justify-content:center;gap:9px;
@@ -207,10 +209,10 @@
         <a href="#wat-je-krijgt">Wat je krijgt</a>
         <a href="#hoe-het-werkt">Hoe het werkt</a>
         <a href="#ervaring">Branches</a>
-        <a href="#contact">Contact</a>
-        <a class="btn btn-primary" href="#contact">Gratis proefleads</a>
+        <a class="nav-contact" href="contact.html">Contact</a>
+        <a class="btn btn-primary" href="contact.html">Gratis proefleads</a>
       </div>
-      <a class="btn btn-primary mobile-menu" href="#contact">Proefleads</a>
+      <a class="btn btn-primary mobile-menu" href="contact.html">Contact</a>
     </div>
   </nav>
 
@@ -358,41 +360,11 @@
             <h2>Benieuwd hoe dit er voor jouw bedrijf uitziet?</h2>
             <p>Ontvang gratis proefleads op basis van jouw ideale klant. Zo zie je eerst de kwaliteit en relevantie voordat je ergens aan vastzit.</p>
           </div>
-          <div class="cta-actions"><a class="btn btn-primary" href="#contact">Vraag gratis proefleads aan →</a></div>
+          <div class="cta-actions"><a class="btn btn-primary" href="contact.html">Vraag gratis proefleads aan →</a></div>
         </div>
       </div>
     </section>
 
-    <section class="section section-soft" id="contact">
-      <div class="container contact">
-        <div>
-          <div class="section-kicker">Contact</div>
-          <h2>Vertel ons wie je wilt bereiken.</h2>
-          <p class="section-intro">Geef kort aan wat voor bedrijven een goede klant voor je zijn. We gebruiken dat als uitgangspunt voor de gratis proefleads.</p>
-          <div class="contact-details">
-            <div><strong style="color:#001847">YSlead</strong></div>
-            <a href="mailto:yorrick@yslead.nl">yorrick@yslead.nl</a>
-            <div style="font-size:13px;color:#71809A">KVK 92137490</div>
-          </div>
-        </div>
-        <form class="form-card" id="leadForm" action="https://formsubmit.co/yorrick@yslead.nl" method="POST">
-          <div class="form-success" id="formSuccess" role="status" aria-live="polite"><strong>Aanvraag ontvangen.</strong>Bedankt! Je aanvraag voor gratis proefleads is verstuurd. We nemen zo snel mogelijk contact met je op.</div>
-          <input type="hidden" name="_subject" value="Nieuwe aanvraag gratis proefleads via yslead.nl">
-          <input type="hidden" name="_next" value="https://yslead.nl/?sent=1#contact">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
-          <div class="form-grid">
-            <div><label for="name">Naam</label><input id="name" name="name" autocomplete="name" required placeholder="Jouw naam"></div>
-            <div><label for="email">Zakelijk e-mailadres</label><input id="email" name="email" type="email" autocomplete="email" required placeholder="naam@bedrijf.nl"></div>
-            <div class="full"><label for="company">Bedrijfsnaam</label><input id="company" name="company" autocomplete="organization" required placeholder="Bedrijfsnaam"></div>
-            <div class="full"><label for="target">Wat voor klanten zoek je?</label><textarea id="target" name="target" required placeholder="Bijvoorbeeld: zakelijke dienstverleners met 20-100 medewerkers in Midden-Nederland..."></textarea></div>
-            <div class="full"><button class="btn btn-primary" style="width:100%" type="submit">Vraag gratis proefleads aan →</button></div>
-          </div>
-          <p class="form-note">Je gegevens worden alleen gebruikt om contact met je op te nemen over je aanvraag.</p>
-        </form>
-      </div>
-    </section>
   </main>
 
   <footer>
@@ -404,17 +376,6 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('sent') === '1') {
-      const success = document.getElementById('formSuccess');
-      const formGrid = document.querySelector('#leadForm .form-grid');
-      if (success) success.style.display = 'block';
-      if (formGrid) formGrid.style.display = 'none';
-      if (window.history && window.history.replaceState) {
-        window.history.replaceState({}, document.title, window.location.pathname + '#contact');
-      }
-    }
   </script>
 </body>
 </html>
