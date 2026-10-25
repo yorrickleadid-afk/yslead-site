@@ -49,8 +49,8 @@
     .brand svg{width:34px;height:34px;flex:none}
     .nav-links{display:flex;align-items:center;gap:28px;color:#405171;font-size:14px;font-weight:650}
     .nav-links a:hover{color:var(--blue)}
-    .nav-contact{padding:9px 12px;border-radius:10px;background:#EDF4FF;color:var(--blue)!important;border:1px solid #D8E7FF}
-    .nav-contact:hover{background:#E4EEFF!important;border-color:#BFD5FB}
+    .nav-order{padding:9px 12px;border-radius:10px;background:#EDF4FF;color:var(--blue)!important;border:1px solid #D8E7FF}
+    .nav-order:hover{background:#E4EEFF!important;border-color:#BFD5FB}
     .btn{
       min-height:48px;padding:0 20px;border-radius:12px;border:1px solid transparent;
       display:inline-flex;align-items:center;justify-content:center;gap:9px;
@@ -216,6 +216,7 @@
   .footer-inner a:hover{color:var(--blue)}
   @media(max-width:960px){.info-layout{grid-template-columns:1fr}}
   @media(max-width:640px){.info-hero{padding:60px 0 48px}.info-body{padding:44px 0 72px}.info-card,.info-side{padding:25px}.detail-grid{grid-template-columns:1fr;gap:23px}.info-card h2{font-size:23px}}
+@media(max-width:640px){.nav-inner{gap:10px}.mobile-menu{padding:0 12px;min-height:42px;font-size:13px}}
 </style>
 </head>
 <body>
@@ -236,10 +237,10 @@
         <a href="index.html#hoe-het-werkt">Hoe het werkt</a>
         <a href="voorbeelden.html">Voorbeelden</a>
         <a href="index.html#ervaring">Branches</a>
-        <a class="nav-contact" href="contact.html">Contact</a>
+        <a class="nav-order" href="leadlijst-aanvragen.html">Leadlijst aanvragen</a>
         <a class="btn btn-primary" href="/#proefleads">Gratis proefleads</a>
       </div>
-      <a class="btn btn-primary mobile-menu" href="contact.html">Contact</a>
+      <a class="btn btn-primary mobile-menu" href="leadlijst-aanvragen.html">Leadlijst aanvragen</a>
     </div>
   </nav>
 <main id="top">
@@ -277,7 +278,7 @@
 <footer>
     <div class="container footer-inner">
       <div><span class="footer-brand">YSlead</span> &nbsp; · &nbsp; Gerichte B2B prospecting</div>
-      <div>© <span id="year"></span> YSlead &nbsp; · &nbsp; yorrick@yslead.nl &nbsp; · &nbsp; <a href="privacy.html">Privacyverklaring</a> &nbsp; · &nbsp; <a href="bedrijfsgegevens.html" aria-current="page">Bedrijfsgegevens</a> &nbsp; · &nbsp; <a href="voorbeelden.html">Voorbeelden</a></div>
+      <div>© <span id="year"></span> YSlead &nbsp; · &nbsp; yorrick@yslead.nl &nbsp; · &nbsp; <a href="contact.html">Contact</a> &nbsp; · &nbsp; <a href="privacy.html">Privacyverklaring</a> &nbsp; · &nbsp; <a href="bedrijfsgegevens.html" aria-current="page">Bedrijfsgegevens</a> &nbsp; · &nbsp; <a href="voorbeelden.html">Voorbeelden</a></div>
     </div>
   </footer>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
