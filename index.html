@@ -415,7 +415,10 @@
   </footer>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    if (window.location.pathname === '/index.html') {
+    window.location.replace('/' + window.location.search + window.location.hash);
+  }
+  document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
