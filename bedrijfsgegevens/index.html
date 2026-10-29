@@ -217,6 +217,38 @@
   @media(max-width:960px){.info-layout{grid-template-columns:1fr}}
   @media(max-width:640px){.info-hero{padding:60px 0 48px}.info-body{padding:44px 0 72px}.info-card,.info-side{padding:25px}.detail-grid{grid-template-columns:1fr;gap:23px}.info-card h2{font-size:23px}}
 @media(max-width:640px){.nav-inner{gap:10px}.mobile-menu{padding:0 12px;min-height:42px;font-size:13px}}
+  /* Mobile-only navigation: desktop layout and desktop links remain unchanged. */
+  .mobile-nav-toggle,.mobile-nav-panel{display:none}
+  @media (max-width:960px){
+    .mobile-nav-toggle{
+      display:inline-flex;align-items:center;justify-content:center;gap:9px;
+      min-height:44px;padding:0 13px;border:1px solid #DCE7FA;border-radius:11px;
+      background:#FFFFFF;color:#001847;font-size:14px;font-weight:750;
+      cursor:pointer;flex-shrink:0
+    }
+    .mobile-nav-toggle:hover,.mobile-nav-toggle[aria-expanded="true"]{background:#EDF4FF;border-color:#BFD5FB}
+    .mobile-nav-toggle:focus-visible,.mobile-nav-list a:focus-visible{outline:3px solid #97B8F9;outline-offset:2px}
+    .mobile-nav-toggle svg{width:19px;height:19px;flex-shrink:0}
+    .mobile-nav-panel:not([hidden]){
+      display:block;position:absolute;top:100%;left:0;right:0;z-index:60;
+      background:#FFFFFF;border-bottom:1px solid #DCE7FA;
+      box-shadow:0 16px 32px rgba(0,24,71,.12);
+      max-height:calc(100vh - 76px);overflow-y:auto;overscroll-behavior:contain
+    }
+    .mobile-nav-list{width:min(var(--max),calc(100% - 40px));margin:0 auto;padding:14px 0 22px;display:grid;gap:4px}
+    .mobile-nav-list a{display:flex;align-items:center;min-height:44px;padding:11px 14px;
+      font-size:15px;line-height:1.45;font-weight:650;color:#253858;border-radius:10px}
+    .mobile-nav-list a:hover,.mobile-nav-list a[aria-current="page"]{color:#005DEE;background:#EDF4FF}
+    .mobile-nav-list .mobile-nav-primary{background:#005DEE;color:#FFFFFF;margin-top:10px;justify-content:center;font-weight:750}
+    .mobile-nav-list .mobile-nav-primary:hover{background:#004CC6;color:#FFFFFF}
+    .mobile-nav-list .mobile-nav-secondary{color:#005DEE;border:1px solid #D8E7FF;background:#EDF4FF;margin-top:4px;justify-content:center;font-weight:750}
+    .mobile-nav-list .mobile-nav-secondary:hover{background:#E4EEFF}
+  }
+  @media (max-width:640px){
+    .nav .mobile-menu{display:none}
+    .mobile-nav-list{width:calc(100% - 28px)}
+    .mobile-nav-panel:not([hidden]){max-height:calc(100vh - 68px)}
+  }
 </style>
 </head>
 <body>
@@ -241,6 +273,22 @@
         <a class="btn btn-primary" href="/#proefleads">Gratis proefleads</a>
       </div>
       <a class="btn btn-primary mobile-menu" href="/leadlijst-aanvragen/">Leadlijst aanvragen</a>
+      <button class="mobile-nav-toggle" type="button" aria-expanded="false" aria-controls="yslead-mobile-nav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <span>Menu</span>
+      </button>
+    </div>
+    <div class="mobile-nav-panel" id="yslead-mobile-nav" hidden>
+      <div class="mobile-nav-list">
+        <a href="/#wat-je-krijgt">Wat je krijgt</a>
+        <a href="/#hoe-het-werkt">Hoe het werkt</a>
+        <a href="/voorbeelden/">Voorbeelden</a>
+        <a href="/#ervaring">Branches</a>
+        <a href="/leads-kopen/">Leads kopen</a>
+        <a href="/contact/">Contact</a>
+        <a class="mobile-nav-primary" href="/leadlijst-aanvragen/">Leadlijst aanvragen</a>
+        <a class="mobile-nav-secondary" href="/#proefleads">Gratis proefleads</a>
+      </div>
     </div>
   </nav>
 <main id="top">
@@ -282,5 +330,37 @@
     </div>
   </footer>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>
+    (function () {
+      const nav = document.querySelector('.nav');
+      const button = nav && nav.querySelector('.mobile-nav-toggle');
+      const panel = document.getElementById('yslead-mobile-nav');
+      if (!nav || !button || !panel) return;
+      function closeMenu() {
+        panel.hidden = true;
+        button.setAttribute('aria-expanded', 'false');
+      }
+      button.addEventListener('click', function () {
+        const open = panel.hidden;
+        panel.hidden = !open;
+        button.setAttribute('aria-expanded', String(open));
+      });
+      panel.addEventListener('click', function (event) {
+        if (event.target.closest('a')) closeMenu();
+      });
+      document.addEventListener('pointerdown', function (event) {
+        if (!nav.contains(event.target)) closeMenu();
+      });
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && !panel.hidden) {
+          closeMenu();
+          button.focus();
+        }
+      });
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 960) closeMenu();
+      });
+    })();
+  </script>
 </body>
 </html>
