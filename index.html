@@ -246,6 +246,20 @@
     .mobile-nav-list{width:calc(100% - 28px)}
     .mobile-nav-panel:not([hidden]){max-height:calc(100vh - 68px)}
   }
+
+    /* Tweede dienst zonder wijziging van de bestaande stijl */
+    .hero-acq-note{font-size:14px;line-height:1.65;color:var(--muted);margin:22px 0 0;max-width:630px}
+    .hero-acq-note a{color:var(--blue);font-weight:750;text-decoration:underline;text-underline-offset:3px}
+    .service-section{border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .service-choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:35px}
+    .service-choice-card{border:1px solid var(--border);border-radius:20px;padding:32px;background:#fff;display:flex;flex-direction:column;align-items:flex-start;min-height:305px}
+    .service-choice-card.featured{border-color:#BFD5FB;background:linear-gradient(155deg,#F6F9FF 0%,#EDF4FF 100%)}
+    .service-choice-kicker{font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--blue);margin-bottom:20px}
+    .service-choice-card h3{font-size:clamp(25px,2.5vw,33px);line-height:1.13;margin-bottom:16px}
+    .service-choice-card p{font-size:16px;line-height:1.7;color:var(--muted);margin:0 0 26px;max-width:470px}
+    .service-choice-card .btn,.service-choice-link{margin-top:auto}
+    .service-choice-link{font-size:15px;color:var(--blue);font-weight:750;text-decoration:underline;text-underline-offset:3px}
+    @media(max-width:760px){.service-choice-grid{grid-template-columns:1fr}.service-choice-card{min-height:0;padding:25px}.service-choice-card .btn{width:100%;text-align:center}}
 </style>
 </head>
 <body>
@@ -305,6 +319,7 @@
             <span><i class="check">✓</i> Praktische contactinformatie</span>
             <span><i class="check">✓</i> Minder ruis</span>
           </div>
+          <p class="hero-acq-note">Wil je ook de eerste acquisitie uitbesteden? <a href="/acquisitie-uitbesteden/">Wij verzorgen outreach en eerste gesprekken.</a></p>
         </div>
 
         <div class="visual" aria-label="Voorbeeld van gekwalificeerde prospects">
@@ -378,6 +393,28 @@
               <div class="field"><div class="field-label">Outreach-invalshoek</div><div class="field-value">Aansluiten op actuele uitbreiding in plaats van generieke introductie</div></div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section service-section" id="diensten" aria-labelledby="diensten-titel">
+      <div class="container">
+        <div class="section-kicker">Onze diensten</div>
+        <h2 id="diensten-titel">Zelf de gesprekken voeren, of ook de acquisitie uitbesteden?</h2>
+        <p class="section-intro">Of je nu alleen goede prospects zoekt of ook hulp wilt bij de eerste benadering: YSlead stemt de aanpak af op jouw commerciële doel.</p>
+        <div class="service-choice-grid">
+          <article class="service-choice-card">
+            <span class="service-choice-kicker">01 / Prospectonderzoek</span>
+            <h3>B2B-leadlijsten op maat</h3>
+            <p>Wij onderzoeken en selecteren relevante zakelijke prospects, inclusief commerciële signalen en bruikbare contactinformatie. Je team verzorgt zelf de acquisitie.</p>
+            <a class="service-choice-link" href="/leads-kopen/">Bekijk onze leadlijsten <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="service-choice-card featured">
+            <span class="service-choice-kicker">02 / Acquisitie uitbesteden</span>
+            <h3>Wij leggen het eerste contact</h3>
+            <p>Naast onderzoek kunnen we de eerste outreach, opvolging van reacties en verkennende gesprekken namens jouw bedrijf verzorgen. Verdere acquisitie is bespreekbaar.</p>
+            <a class="btn btn-primary" href="/acquisitie-uitbesteden/">Ontdek onze acquisitiedienst <span aria-hidden="true">→</span></a>
+          </article>
         </div>
       </div>
     </section>
