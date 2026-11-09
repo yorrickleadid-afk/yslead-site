@@ -254,6 +254,14 @@
     .examples-cta-card h2{color:#001847;font-size:clamp(26px,3vw,36px);margin:0 0 12px}
     .examples-cta-card p{color:#50617C;font-size:15px;line-height:1.75;max-width:670px;margin:0}
     .examples-cta-card .btn{flex-shrink:0}
+    .examples-cta-copy{flex:1;min-width:0}
+    .examples-cta-eyebrow{color:#005DEE!important;font-size:12px!important;font-weight:850;letter-spacing:.07em;text-transform:uppercase;margin-bottom:11px!important}
+    .examples-cta-actions{display:flex;flex-direction:column;align-items:stretch;gap:12px;min-width:260px}
+    .examples-cta-actions .btn{white-space:normal;text-align:center}
+    .examples-cta-secondary{color:#005DEE;font-size:13px;font-weight:750;text-align:center;text-decoration:underline;text-underline-offset:3px}
+    .examples-cta-secondary:hover{color:#003C9E}
+    @media(max-width:990px){.examples-cta-actions{min-width:0;width:100%}}
+
     .footer-inner{flex-wrap:wrap}
     @media(max-width:990px){.examples-hero-grid,.examples-grid{grid-template-columns:1fr}.examples-steps{grid-template-columns:repeat(2,1fr)}.examples-cta-card{flex-direction:column;align-items:flex-start}}
     @media(max-width:640px){.examples-hero{padding:56px 0}.examples-section,.examples-method{padding:54px 0}.examples-panel-head{padding:25px}.examples-grid{padding:16px}.examples-field,.examples-side{padding:18px}.examples-steps{grid-template-columns:1fr}.examples-cta-card{padding:27px}.examples-cta{padding-bottom:60px}.examples-tabs{display:grid}.examples-tab{text-align:left}}
@@ -357,7 +365,7 @@
       </a>
       <div class="nav-links">
         <a href="/#wat-je-krijgt">Wat je krijgt</a>
-        <a href="/#hoe-het-werkt">Hoe het werkt</a>
+
         <a href="/voorbeelden/" aria-current="page">Voorbeelden</a>
         <a href="/acquisitie-uitbesteden/">Acquisitie</a>
         <a class="nav-order" href="/leadlijst-aanvragen/">Leadlijst aanvragen</a>
@@ -372,7 +380,7 @@
     <div class="mobile-nav-panel" id="yslead-mobile-nav" hidden>
       <div class="mobile-nav-list">
         <a href="/#wat-je-krijgt">Wat je krijgt</a>
-        <a href="/#hoe-het-werkt">Hoe het werkt</a>
+
         <a href="/voorbeelden/" aria-current="page">Voorbeelden</a>
         <a href="/acquisitie-uitbesteden/">Acquisitie</a>
         <a href="/leads-kopen/">Leads kopen</a>
@@ -524,11 +532,18 @@
     </div>
   </section>
 
-  <section class="examples-cta">
+  <section class="examples-cta" aria-labelledby="examples-next-step">
     <div class="container">
       <div class="examples-cta-card">
-        <div><h2>Benieuwd hoe dit er voor jouw bedrijf uitziet?</h2><p>Beschrijf je ideale klant en ontvang gratis proefleads die passen bij jouw markt. Zo kun je zelf de kwaliteit en relevantie beoordelen.</p></div>
-        <a class="btn btn-primary" href="/contact/">Vraag gratis proefleads aan</a>
+        <div class="examples-cta-copy">
+          <p class="examples-cta-eyebrow">Klaar om aan de slag te gaan?</p>
+          <h2 id="examples-next-step">Duidelijk wat je zoekt? Wij onderzoeken jouw volgende prospects.</h2>
+          <p>Je hebt gezien hoe wij bedrijven selecteren en onderbouwen. Geef jouw doelgroep, regio en het gewenste aantal leads door. We bespreken eerst de mogelijkheden en prijs, waarna je zelf beslist of je wilt bestellen.</p>
+        </div>
+        <div class="examples-cta-actions">
+          <a class="btn btn-primary" href="/leadlijst-aanvragen/">Direct een leadlijst aanvragen</a>
+          <a class="examples-cta-secondary" href="/#proefleads">Liever eerst gratis proefleads?</a>
+        </div>
       </div>
     </div>
   </section>
